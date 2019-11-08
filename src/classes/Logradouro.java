@@ -56,4 +56,10 @@ public class Logradouro {
     public void setNomeLogradouro(String nomeLogradouro) {
         this.nomeLogradouro = nomeLogradouro;
     }
+
+    @Override
+    public String toString() {
+        return this.nomeLogradouro;
+    }
+    
 }

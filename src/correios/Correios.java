@@ -11,7 +11,9 @@ import classes.Cidade;
 import classes.Estado;
 import classes.LeitorDeBairros;
 import classes.LeitorDeCidades;
+import classes.LeitorDeLogradouros;
 import classes.LeitorUnidadeFederal;
+import classes.Logradouro;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,13 +39,14 @@ public class Correios {
                 LeitorUnidadeFederal leitorUF = new LeitorUnidadeFederal(arquivoAtual);
                 LeitorDeCidades leitorCidade = new LeitorDeCidades(arquivoAtual);
                 LeitorDeBairros leitorBairros = new LeitorDeBairros(arquivoAtual);
+                LeitorDeLogradouros leitorLogradouros = new LeitorDeLogradouros(arquivoAtual);
                 leitorUF.lerUF(bancoDeDados);
                 leitorCidade.lerCidade(bancoDeDados);
                 leitorBairros.lerBairro(bancoDeDados);
-                
+                leitorLogradouros.lerLogradouro(bancoDeDados);
 
-                HashMap<String, Bairro> cidades = bancoDeDados.getMapDeEstados().get("SE").getCidades().get("Aracaju").getBairros();
-                for (Map.Entry<String, Bairro> entry : cidades.entrySet()) {
+                HashMap<String, Logradouro> Logradouros = bancoDeDados.getMapDeLogradouros();
+                for (Map.Entry<String, Logradouro> entry : Logradouros.entrySet()) {
                     System.out.println(entry);
                 }
                 
