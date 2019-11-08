@@ -5,9 +5,11 @@
  */
 package correios;
 
+import classes.Bairro;
 import classes.BancoDeDados;
 import classes.Cidade;
 import classes.Estado;
+import classes.LeitorDeBairros;
 import classes.LeitorDeCidades;
 import classes.LeitorUnidadeFederal;
 import java.io.File;
@@ -34,11 +36,14 @@ public class Correios {
                 File arquivoAtual = chooser.getSelectedFile();
                 LeitorUnidadeFederal leitorUF = new LeitorUnidadeFederal(arquivoAtual);
                 LeitorDeCidades leitorCidade = new LeitorDeCidades(arquivoAtual);
+                LeitorDeBairros leitorBairros = new LeitorDeBairros(arquivoAtual);
                 leitorUF.lerUF(bancoDeDados);
                 leitorCidade.lerCidade(bancoDeDados);
-                System.out.println(bancoDeDados.getMapDeEstados());
-                HashMap<String, Cidade> cidades = bancoDeDados.getMapDeEstados().get("SE").getCidades();
-                for (Map.Entry<String, Cidade> entry : cidades.entrySet()) {
+                leitorBairros.lerBairro(bancoDeDados);
+                
+
+                HashMap<String, Bairro> cidades = bancoDeDados.getMapDeEstados().get("SE").getCidades().get("Aracaju").getBairros();
+                for (Map.Entry<String, Bairro> entry : cidades.entrySet()) {
                     System.out.println(entry);
                 }
                 

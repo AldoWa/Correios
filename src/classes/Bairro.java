@@ -33,4 +33,10 @@ public class Bairro {
     public void setLogradouros(HashMap<String, Logradouro> logradouros) {
         this.logradouros = logradouros;
     }
+
+    @Override
+    public String toString() {
+        return this.nomeBairro;
+    }
+    
 }

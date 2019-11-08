@@ -41,7 +41,7 @@ public class LeitorUnidadeFederal {
         //Percorrendo todos os arquivos das unidades federais
         for (int i = 0; i < this.vetorDeArquivosUF.size(); i++) {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(this.vetorDeArquivosUF.get(i)));
-            System.out.println(i);
+           
             //Pulando a primeira linha que sera o cabecalho
             bufferedReader.readLine();
             String linha = bufferedReader.readLine();
