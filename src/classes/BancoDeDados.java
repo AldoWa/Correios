@@ -6,6 +6,7 @@
 package classes;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -16,18 +17,18 @@ public class BancoDeDados {
     //O mapa de estados ira salvar os estados de acordo com o seus respectivo nome
     private HashMap<String,Estado> mapDeEstados;
     //O mapa de Logradouros ira salvar cada logradouros de acordo com o cep
-    private HashMap<String,Logradouro> mapDeLogradouros;
+    private ConcurrentHashMap<String,Logradouro> mapDeLogradouros;
 
     public BancoDeDados() {
         this.mapDeEstados = new HashMap<>();
-        this.mapDeLogradouros = new HashMap<>();
+        this.mapDeLogradouros = new ConcurrentHashMap<>();
     }
 
     public HashMap<String, Estado> getMapDeEstados() {
         return mapDeEstados;
     }
 
-    public HashMap<String, Logradouro> getMapDeLogradouros() {
+    public ConcurrentHashMap<String,Logradouro> getMapDeLogradouros() {
         return mapDeLogradouros;
     }
     

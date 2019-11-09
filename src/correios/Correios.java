@@ -5,20 +5,17 @@
  */
 package correios;
 
-import classes.Bairro;
 import classes.BancoDeDados;
-import classes.Cidade;
-import classes.Estado;
 import classes.LeitorDeBairros;
 import classes.LeitorDeCidades;
 import classes.LeitorDeLogradouros;
 import classes.LeitorUnidadeFederal;
 import classes.Logradouro;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -39,17 +36,18 @@ public class Correios {
                 LeitorUnidadeFederal leitorUF = new LeitorUnidadeFederal(arquivoAtual);
                 LeitorDeCidades leitorCidade = new LeitorDeCidades(arquivoAtual);
                 LeitorDeBairros leitorBairros = new LeitorDeBairros(arquivoAtual);
-                LeitorDeLogradouros leitorLogradouros = new LeitorDeLogradouros(arquivoAtual);
+                LeitorDeLogradouros leitorLogradouros = new LeitorDeLogradouros(arquivoAtual, bancoDeDados);
                 leitorUF.lerUF(bancoDeDados);
                 leitorCidade.lerCidade(bancoDeDados);
                 leitorBairros.lerBairro(bancoDeDados);
-                leitorLogradouros.lerLogradouro(bancoDeDados);
+                leitorLogradouros.lerLogradouro();
 
-                HashMap<String, Logradouro> Logradouros = bancoDeDados.getMapDeLogradouros();
-                for (Map.Entry<String, Logradouro> entry : Logradouros.entrySet()) {
-                    System.out.println(entry);
-                }
-                
+                ConcurrentHashMap<String, Logradouro> Logradouros = bancoDeDados.getMapDeLogradouros();
+
+//                for (Map.Entry<String, Logradouro> entry : Logradouros.entrySet()) {
+//                    System.out.println(entry);
+//                }
+//                System.out.println(Logradouros.size());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
