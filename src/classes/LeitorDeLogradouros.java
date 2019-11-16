@@ -12,21 +12,24 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class LeitorDeLogradouros {
-
+    
+    // ATRIBUTOS
     private ArrayList<Runnable> runablesArquivosLogradouros;
 
+    // CONSTRUTOR
     public LeitorDeLogradouros(File arquivo, BancoDeDados bancoDeDados) throws IOException {
-        //Iniciando o vetor
+        // Iniciando o vetor
         this.runablesArquivosLogradouros = new ArrayList<>();
-        //Filtrando os arquivos
+        // Filtrando os arquivos
         this.filtrarArquivos(arquivo.listFiles(), bancoDeDados);
-        //Checando se o diretorio e valido
+        // Checando se o diretorio e valido
         if (this.runablesArquivosLogradouros.isEmpty()) {
             throw new IOException("O Diretorio de Logradouros informado Ã© invalido");
         }
     }
-
-    //Filtrando os arquivos so de LOGRADOUROS
+    
+    // MÉTODOS
+    // Filtrando os arquivos so de LOGRADOUROS
     public void filtrarArquivos(File[] arquivosVetor, BancoDeDados bancoDeDados) throws FileNotFoundException {
         for (int i = 0; i < arquivosVetor.length; i++) {
             if (arquivosVetor[i].getName().contains("LOGRADOUROS.TXT")) {
@@ -34,10 +37,9 @@ public class LeitorDeLogradouros {
             }
         }
     }
-
-    //Lendo o logradouro
+    // Lendo o logradouro
     public void lerLogradouro() throws FileNotFoundException, IOException {
-        //Iniciando a pool de threads pra que cada uma seja executada e os logradouros sejam extraidos
+        // Iniciando a pool de threads pra que cada uma seja executada e os logradouros sejam extraidos
         ExecutorService poolDeThreads = Executors.newFixedThreadPool(this.runablesArquivosLogradouros.size());
         for (int i = 0; i < this.runablesArquivosLogradouros.size(); i++) {
             poolDeThreads.execute(this.runablesArquivosLogradouros.get(i));

@@ -16,7 +16,8 @@ import java.io.IOException;
  * @author Matheus Nunes
  */
 public class RunnableLeitorLogradouro implements Runnable{
-
+    
+    // ATRIBUTOS
     private BufferedReader leitor;
     private BancoDeDados bancoDeDados;
     public RunnableLeitorLogradouro(File arquivoASerLido,BancoDeDados bancoDeDados) throws FileNotFoundException {
@@ -24,10 +25,11 @@ public class RunnableLeitorLogradouro implements Runnable{
         this.bancoDeDados = bancoDeDados;
     }
         
+    // RUN
     @Override
     public void run(){
         try {
-            //Pulando linha de cabeÃ§alho
+            // Pulando linha de cabeçalho
             this.leitor.readLine();
             String linha = leitor.readLine();
             while (!linha.equals("#")) {
@@ -48,6 +50,5 @@ public class RunnableLeitorLogradouro implements Runnable{
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-    }
-    
+    }    
 }

@@ -17,9 +17,11 @@ import java.util.ArrayList;
  * @author Matheus Nunes
  */
 public class LeitorUnidadeFederal {
-
+    
+    // ATRIBUTOS
     private ArrayList<File> vetorDeArquivosUF;
-
+    
+    // CONSTRUTOR
     public LeitorUnidadeFederal(File pastaDosArquivos) throws IOException {
         this.vetorDeArquivosUF = new ArrayList<>();
         this.filtraArquivosUF(pastaDosArquivos.listFiles());
@@ -28,7 +30,8 @@ public class LeitorUnidadeFederal {
         }
     }
     
-    //Metodo para filtrar os arquivos da pasta somente referentes as unidades federacao
+    // MÉTODOS
+    // Metodo para filtrar os arquivos da pasta somente referentes as unidades federacao
     private void filtraArquivosUF(File[] vetorDeArquivos){
         for (int i = 0; i < vetorDeArquivos.length; i++) {
             if (vetorDeArquivos[i].getName().contains("UNIDADES_FEDERACAO.TXT")){
@@ -36,27 +39,24 @@ public class LeitorUnidadeFederal {
             }
         }
     }
-
     public void lerUF(BancoDeDados bancoDeDados) throws FileNotFoundException, IOException {
-        //Percorrendo todos os arquivos das unidades federais
+        // Percorrendo todos os arquivos das unidades federais
         for (int i = 0; i < this.vetorDeArquivosUF.size(); i++) {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(this.vetorDeArquivosUF.get(i)));
-            //Pulando a primeira linha que sera o cabecalho
+            // Pulando a primeira linha que sera o cabecalho
             bufferedReader.readLine();
             String linha = bufferedReader.readLine();
-            //O final do arquivo termina com #, portanto o arquivo sera lido ate o respectivo caractere
+            // O final do arquivo termina com #, portanto o arquivo sera lido ate o respectivo caractere
             while(!linha.equals("#")){
                 String siglaDoEstado = linha.substring(3,5).trim();
                 String nomeDoEstado = linha.substring(9,81).trim();
                 Estado novoEstado = new Estado(siglaDoEstado,nomeDoEstado);
-                //Verificando se existem estados de mesmo nome
+                // Verificando se existem estados de mesmo nome
                 if (!bancoDeDados.getMapDeEstados().containsKey(novoEstado.getSiglaEstado())) {
-                    bancoDeDados.cadastraEstado(novoEstado);
+                    bancoDeDados.cadastrarEstado(novoEstado);
                 }
                 linha = bufferedReader.readLine();
             }
         }
-
     }
-
 }

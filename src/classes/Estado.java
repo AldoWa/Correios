@@ -27,32 +27,27 @@ public class Estado {
     public String getNome() {
         return nome;
     }
-
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     public String getSiglaEstado() {
         return siglaEstado;
     }
-
     public void setSiglaEstado(String siglaEstado) {
         this.siglaEstado = siglaEstado;
     }
-
     public HashMap<String, Cidade> getCidades() {
         return cidades;
     }
-
     public void setCidades(HashMap<String, Cidade> cidades) {
         this.cidades = cidades;
     }
 
+    // MÉTODOS
     @Override
     public String toString() {
         return this.nome;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

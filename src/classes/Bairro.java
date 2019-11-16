@@ -34,6 +34,7 @@ public class Bairro {
         this.logradouros = logradouros;
     }
 
+    // MÉTODOS
     @Override
     public String toString() {
         return this.nomeBairro;

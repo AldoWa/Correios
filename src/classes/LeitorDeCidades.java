@@ -18,8 +18,10 @@ import java.util.ArrayList;
  */
 public class LeitorDeCidades {
 
+    // ATRIBUTOS
     private ArrayList<File> vetorDeArquivosCidades;
-
+    
+    // CONSTRUTOR
     public LeitorDeCidades(File pastaDosArquivos) throws IOException {
         this.vetorDeArquivosCidades = new ArrayList<>();
         this.filtraArquivosCidades(pastaDosArquivos.listFiles());
@@ -27,8 +29,9 @@ public class LeitorDeCidades {
             throw new IOException("O Diretorio de cidades informado Ã© invalido");
         }
     }
-
-    //Metodo para filtrar os arquivos da pasta somente referentes as cidades
+    
+    // MÉTODOS
+    // Metodo para filtrar os arquivos da pasta somente referentes as cidades
     private void filtraArquivosCidades(File[] vetorDeArquivos) {
         for (int i = 0; i < vetorDeArquivos.length; i++) {
             if (vetorDeArquivos[i].getName().contains("LOCALIDADES.TXT")) {
@@ -36,7 +39,6 @@ public class LeitorDeCidades {
             }
         }
     }
-
     public void lerCidade(BancoDeDados bancoDeDados) throws FileNotFoundException, IOException {
         //Percorrendo todos os arquivos das cidades
         for (int i = 0; i < this.vetorDeArquivosCidades.size(); i++) {
