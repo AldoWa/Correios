@@ -6,6 +6,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -44,13 +45,11 @@ public class BancoDeDados {
         if (estado == null) {
             return "\nNão existe estado com essa sigla!";
         }
-
         int cont = 1;
         for (Cidade cidade : estado.getCidades().values()) {
             string.append(Integer.toString(cont)).append(" - ").append(cidade.getNomeCidade()).append("\n");
             cont++;
         }
-
         return string.toString();
     }
 
@@ -122,8 +121,8 @@ public class BancoDeDados {
             }
         }
     }
-    
-    public String pegarLogradouroPeloCEP(String CEP){
+
+    public String pegarLogradouroPeloCEP(String CEP) {
         StringBuilder string = new StringBuilder();
         Logradouro logradouro = this.mapDeLogradouros.get(CEP);
 
@@ -136,7 +135,32 @@ public class BancoDeDados {
                 .append("\n").append("Bairro do logradouro: ").append(logradouro.getBairro())
                 .append("\n").append("Cidade do logradouro: ").append(logradouro.getCidade())
                 .append("\n").append("Estado do logradouro: ").append(logradouro.getEstado());
-        
+
+        return string.toString();
+    }
+
+    public String pegarLogradouroPeloNome(String nomeLogradouro) {
+        StringBuilder string = new StringBuilder();
+
+        for (Logradouro logradouro : this.mapDeLogradouros.values()) {
+            if (nomeLogradouro.compareToIgnoreCase(logradouro.getNomeLogradouro()) == 0) {
+                string.append("CEP do logradouro: ").append(logradouro.getCep()).append("\n")
+                        .append("Nome do logradouro: ").append(logradouro.getNomeLogradouro())
+                        .append("\n").append("Bairro do logradouro: ").append(logradouro.getBairro())
+                        .append("\n").append("Cidade do logradouro: ").append(logradouro.getCidade())
+                        .append("\n").append("Estado do logradouro: ").append(logradouro.getEstado())
+                        .append("\n").append("-----------------------------------------------\n");
+            }
+        }
+        return string.toString();
+    }
+    
+    public String retornarUFs(){
+        StringBuilder string = new StringBuilder();
+        for (Estado estado : this.mapDeEstados.values()) {
+            string.append(estado.getSiglaEstado()).append(" - ")
+                    .append(estado.getNome()).append("\n");
+        }
         return string.toString();
     }
 }

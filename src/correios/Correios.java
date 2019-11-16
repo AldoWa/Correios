@@ -24,31 +24,14 @@ public class Correios {
 
     static void menu() {
         System.out.println("1 - Ler arquivo");
-        System.out.println("2 - Buscar informações");
-        System.out.println("3 - Listar informações");
+        System.out.println("2 - Visualizar estados");
+        System.out.println("3 - Visualizar cidades de um estado");
+        System.out.println("4 - Visualizar bairros de uma cidade");
+        System.out.println("5 - Visualizar logradouros de um bairro");
+        System.out.println("6 - Buscar logradouro por um CEP");
+        System.out.println("7 - Buscar logradouro pelo nome");
         System.out.println("0 - Finalizar programa");
-        System.out.println("---------------------------");
-        System.out.print("Digite uma opção : ");
-    }
-
-    static void menuBusca() {
-        System.out.println("1 - Buscar Unidade Federativa");
-        System.out.println("2 - Buscar Cidade");
-        System.out.println("3 - Buscar Bairro");
-        System.out.println("4 - Buscar Logradouros");
-        System.out.println("0 - Voltar");
-        System.out.println("---------------------------");
-        System.out.print("Digite uma opção : ");
-    }
-
-    static void menuListagem() {
-        System.out.println("1 - Listar Unidades Federativas ");
-        System.out.println("2 - Listar Cidades");
-        System.out.println("3 - Listar Bairros");
-        System.out.println("4 - Listar Logradouros");
-        System.out.println("0 - Voltar");
-        System.out.println("---------------------------");
-        System.out.print("Digite uma opção : ");
+        System.out.print("Digite uma opção: ");
     }
 
     public static void main(String[] args) {
@@ -58,7 +41,6 @@ public class Correios {
         Scanner scan = new Scanner(System.in);
         menu();
         int resp = Integer.parseInt(scan.nextLine());
-        int respBusca;
         while (resp != 0) {
             switch (resp) {
                 case 1:
@@ -76,6 +58,7 @@ public class Correios {
                             leitorCidade.lerCidade(bancoDeDados);
                             leitorBairros.lerBairro(bancoDeDados);
                             leitorLogradouros.lerLogradouro();
+                            System.out.println("Arquivos lidos!");
 
                         } catch (IOException ex) {
                             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -85,60 +68,38 @@ public class Correios {
                     }
                     break;
                 case 2:
-                    System.out.println("");
-                    menuBusca();
-                    respBusca = Integer.parseInt(scan.nextLine());
-                    switch (respBusca) {
-                        case 1:
-                            System.out.print("\nDigite a UF do estado que deseja visualizar as cidades: ");
-                            String ufEstado = scan.nextLine().toUpperCase();
-                            System.out.println(bancoDeDados.buscarCidadesDaUF(ufEstado));
-                            break;
-                        case 2:
-                            System.out.print("\nDigite a UF do estado desejado: ");
-                            String uFEstado = scan.nextLine().toUpperCase();
-                            System.out.print("Digite o nome da cidade que deseja ver os bairros: ");
-                            String nomeCidade = scan.nextLine();
-                            System.out.println(bancoDeDados.buscarBairrosDaCidade(uFEstado, nomeCidade));
-                            break;
-                        case 3:
-                            System.out.print("\nDigite a UF do estado desejado: ");
-                            String UFEstado = scan.nextLine().toUpperCase();
-                            System.out.print("Digite o nome da cidade que deseja ver os bairros: ");
-                            String nameCidade = scan.nextLine();
-                            System.out.print("Digite o nome do bairro que deseja ver as ruas: ");
-                            String nomeBairro = scan.nextLine();
-                            System.out.println(bancoDeDados.buscarLogradourosDoBairro(UFEstado, nameCidade, nomeBairro));
-                            break;
-                        case 4:
-                            System.out.println("\nDigite um CEP: ");
-                            String cepLogradouro = scan.nextLine();
-                            System.out.println(bancoDeDados.pegarLogradouroPeloCEP(cepLogradouro));
-                            break;
-                        default:
-                            break;
-                    }
+                    System.out.println(bancoDeDados.retornarUFs());
                     break;
                 case 3:
-                    System.out.println("");
-                    menuListagem();
-                    respBusca = Integer.parseInt(scan.nextLine());
-                    switch (respBusca) {
-                        case 1:
-                            System.out.println("\nSolitação : UF");
-                            System.out.println("Saída : Listagem das cidades presentes naquela UF");
-                            break;
-                        case 2:
-                            System.out.println("\nSolitação : UF e nome da cidade");
-                            System.out.println("Saída : Listagem dos bairros presentes naquela cidade : ");
-                            break;
-                        case 3:
-                            System.out.println("\nSolicitação : UF, nome da cidade e o nome do bairro ");
-                            System.out.println("Saída : Listagem dos logradouros presentes naquele bairro");
-                            break;
-                        default:
-                            break;
-                    }
+                    System.out.print("\nDigite a UF do estado que deseja visualizar as cidades: ");
+                    String ufEstado = scan.nextLine().toUpperCase();
+                    System.out.println(bancoDeDados.buscarCidadesDaUF(ufEstado));
+                    break;
+                case 4:
+                    System.out.print("\nDigite a UF do estado desejado: ");
+                    String uFEstado = scan.nextLine().toUpperCase();
+                    System.out.print("Digite o nome da cidade que deseja ver os bairros: ");
+                    String nomeCidade = scan.nextLine();
+                    System.out.println(bancoDeDados.buscarBairrosDaCidade(uFEstado, nomeCidade));
+                    break;
+                case 5:
+                    System.out.print("\nDigite a UF do estado desejado: ");
+                    String UFEstado = scan.nextLine().toUpperCase();
+                    System.out.print("Digite o nome da cidade que deseja ver os bairros: ");
+                    String nameCidade = scan.nextLine();
+                    System.out.print("Digite o nome do bairro que deseja ver as ruas: ");
+                    String nomeBairro = scan.nextLine();
+                    System.out.println(bancoDeDados.buscarLogradourosDoBairro(UFEstado, nameCidade, nomeBairro));
+                    break;
+                case 6:
+                    System.out.println("\nDigite um CEP: ");
+                    String cepLogradouro = scan.nextLine();
+                    System.out.println(bancoDeDados.pegarLogradouroPeloCEP(cepLogradouro));
+                    break;
+                case 7:
+                    System.out.println("\nDigite o nome do logradouro: ");
+                    String nomeLogradouro = scan.nextLine();
+                    System.out.println(bancoDeDados.pegarLogradouroPeloNome(nomeLogradouro));
                     break;
                 default:
                     System.out.println("\nOpção inválida !");
