@@ -24,7 +24,7 @@ public class LeitorUnidadeFederal {
         this.vetorDeArquivosUF = new ArrayList<>();
         this.filtraArquivosUF(pastaDosArquivos.listFiles());
         if (this.vetorDeArquivosUF.isEmpty()){
-            throw new IOException("O Diretorio de unidades federais informado Ã© invalido");
+            throw new IOException("O Diretorio de unidades federais informado é invalido");
         }
     }
     
