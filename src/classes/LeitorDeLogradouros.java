@@ -24,7 +24,7 @@ public class LeitorDeLogradouros {
         this.filtrarArquivos(arquivo.listFiles(), bancoDeDados);
         // Checando se o diretorio e valido
         if (this.runablesArquivosLogradouros.isEmpty()) {
-            throw new IOException("O Diretorio de Logradouros informado Ã© invalido");
+            throw new IOException("O Diretorio de Logradouros informado é invalido");
         }
     }
     
@@ -38,7 +38,7 @@ public class LeitorDeLogradouros {
         }
     }
     // Lendo o logradouro
-    public void lerLogradouro() throws FileNotFoundException, IOException {
+    public void lerLogradouro() {
         // Iniciando a pool de threads pra que cada uma seja executada e os logradouros sejam extraidos
         ExecutorService poolDeThreads = Executors.newFixedThreadPool(this.runablesArquivosLogradouros.size());
         for (int i = 0; i < this.runablesArquivosLogradouros.size(); i++) {

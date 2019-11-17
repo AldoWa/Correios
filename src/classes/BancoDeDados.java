@@ -17,22 +17,46 @@ import javax.swing.JOptionPane;
  * @author Matheus Nunes
  */
 public class BancoDeDados {
+
     // ATRIBUTOS
     // O mapa de estados ira salvar os estados de acordo com o seus respectivos nomes
     private HashMap<String, Estado> mapDeEstados;
     // O mapa de Logradouros ira salvar cada logradouro de acordo com o cep
     private ConcurrentHashMap<String, Logradouro> mapDeLogradouros;
+    private LeitorUnidadeFederal leitorUF;
+    private LeitorDeCidades leitorCidade;
+    private LeitorDeBairros leitorBairros;
+    private LeitorDeLogradouros leitorLogradouros;
 
     // CONSTRUTOR
-    public BancoDeDados() {
+    public BancoDeDados() throws IOException {
         this.mapDeEstados = new HashMap<>();
         this.mapDeLogradouros = new ConcurrentHashMap<>();
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int retorno = chooser.showOpenDialog(null);
+        File arquivoAtual = chooser.getSelectedFile();
+        if(retorno == JFileChooser.CANCEL_OPTION){
+            JOptionPane.showMessageDialog(null, "Programa finalizado!");
+            System.exit(0);
+        }
+        try {
+            this.leitorUF = new LeitorUnidadeFederal(arquivoAtual);
+            this.leitorCidade = new LeitorDeCidades(arquivoAtual);
+            this.leitorBairros = new LeitorDeBairros(arquivoAtual);
+            this.leitorLogradouros = new LeitorDeLogradouros(arquivoAtual, this);
+            this.lerArquivos();
+        } catch (IOException ex) {
+            throw ex;
+        }
+
     }
 
     // GETTERS
     public HashMap<String, Estado> getMapDeEstados() {
         return mapDeEstados;
     }
+
     public ConcurrentHashMap<String, Logradouro> getMapDeLogradouros() {
         return mapDeLogradouros;
     }
@@ -41,6 +65,7 @@ public class BancoDeDados {
     public void cadastrarEstado(Estado estado) {
         this.mapDeEstados.put(estado.getSiglaEstado(), estado);
     }
+
     public String buscarCidadesDaUF(String sigla) {
         StringBuilder string = new StringBuilder();
         Estado estado = this.mapDeEstados.get(sigla);
@@ -55,6 +80,7 @@ public class BancoDeDados {
         }
         return string.toString();
     }
+
     public String buscarBairrosDaCidade(String UF, String nomeCidade) {
         StringBuilder string = new StringBuilder();
 
@@ -82,6 +108,7 @@ public class BancoDeDados {
             }
         }
     }
+
     public String buscarLogradourosDoBairro(String UF, String nomeCidade, String nomeBairro) {
         StringBuilder string = new StringBuilder();
 
@@ -122,6 +149,7 @@ public class BancoDeDados {
             }
         }
     }
+
     public String pegarLogradouroPeloCEP(String CEP) {
         StringBuilder string = new StringBuilder();
         Logradouro logradouro = this.mapDeLogradouros.get(CEP);
@@ -138,6 +166,7 @@ public class BancoDeDados {
 
         return string.toString();
     }
+
     public String pegarLogradouroPeloNome(String nomeLogradouro) {
         StringBuilder string = new StringBuilder();
 
@@ -153,6 +182,7 @@ public class BancoDeDados {
         }
         return string.toString();
     }
+
     public String retornarUFs() {
         StringBuilder string = new StringBuilder();
         for (Estado estado : this.mapDeEstados.values()) {
@@ -161,29 +191,21 @@ public class BancoDeDados {
         }
         return string.toString();
     }
+
     public String lerArquivos() {
-        // Leitura do arquivo
-        JFileChooser chooser = new JFileChooser();
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int retorno = chooser.showOpenDialog(null);
-        if (retorno == JFileChooser.CANCEL_OPTION) {
-            return "\nOperação cancelada!";
-        }else if (retorno == JFileChooser.APPROVE_OPTION) {
-            try {
-                File arquivoAtual = chooser.getSelectedFile();
-                LeitorUnidadeFederal leitorUF = new LeitorUnidadeFederal(arquivoAtual);
-                LeitorDeCidades leitorCidade = new LeitorDeCidades(arquivoAtual);
-                LeitorDeBairros leitorBairros = new LeitorDeBairros(arquivoAtual);
-                LeitorDeLogradouros leitorLogradouros = new LeitorDeLogradouros(arquivoAtual, this);
-                leitorUF.lerUF(this);
-                leitorCidade.lerCidade(this);
-                leitorBairros.lerBairro(this);
-                leitorLogradouros.lerLogradouro();
-                return "\nArquivo lido com sucesso!\n";
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
+        try {
+            // Leitura do arquivo
+            leitorUF.lerUF(this);
+            leitorCidade.lerCidade(this);
+            leitorBairros.lerBairro(this);
+            leitorLogradouros.lerLogradouro();
+        } catch (IOException ex) {
+            return "\nErro na leitura!\n";
         }
-        return "Falha ao ler arquivo!";
+        return "\nLeitura realizada com sucesso!\n";
+    }
+
+    public void testeLeituraArquivo() {
+
     }
 }

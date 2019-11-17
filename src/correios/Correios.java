@@ -6,7 +6,10 @@
 package correios;
 
 import classes.BancoDeDados;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,20 +42,15 @@ public class Correios {
 
     public static void main(String[] args) {
         // Inicialização do programa
-        BancoDeDados bancoDeDados = new BancoDeDados();
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Selecione o diretório do arquivo que deseja ler:");
-        String retorno = bancoDeDados.lerArquivos();
-        if (retorno.equals("\nOperação cancelada!")) {
-            System.out.println("Programa cancelado!");
-            System.exit(0);
-        }
-        while (retorno.equals("Falha ao ler arquivo!")) {
-            retorno = bancoDeDados.lerArquivos();
-            if (retorno.equals("\nOperação cancelada!")) {
-                System.exit(0);
+        BancoDeDados bancoDeDados;
+        while(true){
+            try {
+                bancoDeDados = new BancoDeDados();
+                break;
+            } catch (IOException ex) {
             }
         }
+        Scanner scan = new Scanner(System.in);
         while (true) {
             try {
                 menu();
