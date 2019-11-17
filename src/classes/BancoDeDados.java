@@ -200,9 +200,9 @@ public class BancoDeDados {
             leitorBairros.lerBairro(this);
             leitorLogradouros.lerLogradouro();
         } catch (IOException ex) {
-            return "\nErro na leitura!\n";
+            return "\nErro na leitura!";
         }
-        return "\nLeitura realizada com sucesso!\n";
+        return "\nLeitura realizada com sucesso!";
     }
 
     public void testeLeituraArquivo() {

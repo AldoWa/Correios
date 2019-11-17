@@ -20,8 +20,10 @@ public class RunnableLeitorLogradouro implements Runnable{
     // ATRIBUTOS
     private BufferedReader leitor;
     private BancoDeDados bancoDeDados;
+    private File arquivoASerLido;
     public RunnableLeitorLogradouro(File arquivoASerLido,BancoDeDados bancoDeDados) throws FileNotFoundException {
-        this.leitor = new BufferedReader((new FileReader(arquivoASerLido)));
+        this.arquivoASerLido = arquivoASerLido;
+        this.leitor = new BufferedReader(new FileReader(this.arquivoASerLido));
         this.bancoDeDados = bancoDeDados;
     }
         
@@ -30,8 +32,8 @@ public class RunnableLeitorLogradouro implements Runnable{
     public void run(){
         try {
             // Pulando linha de cabeçalho
-            this.leitor.readLine();
-            String linha = leitor.readLine();
+            String linha = this.leitor.readLine();
+            linha = leitor.readLine();
             while (!linha.equals("#")) {
                 String cep = linha.substring(518, 526).trim();
                 Estado estado = this.bancoDeDados.getMapDeEstados().get(linha.substring(1, 3).trim());
@@ -47,6 +49,7 @@ public class RunnableLeitorLogradouro implements Runnable{
                 }
                 linha = this.leitor.readLine();
             }
+            this.leitor = new BufferedReader(new FileReader(this.arquivoASerLido));
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
