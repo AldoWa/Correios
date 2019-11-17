@@ -166,7 +166,9 @@ public class BancoDeDados {
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int retorno = chooser.showOpenDialog(null);
-        if (retorno == JFileChooser.APPROVE_OPTION) {
+        if (retorno == JFileChooser.CANCEL_OPTION) {
+            return "\nOperação cancelada!";
+        }else if (retorno == JFileChooser.APPROVE_OPTION) {
             try {
                 File arquivoAtual = chooser.getSelectedFile();
                 LeitorUnidadeFederal leitorUF = new LeitorUnidadeFederal(arquivoAtual);
@@ -181,8 +183,6 @@ public class BancoDeDados {
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Por favor, um diretório deve ser selecionado antes de iniciar o programa!");
         }
         return "Falha ao ler arquivo!";
     }

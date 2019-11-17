@@ -23,7 +23,16 @@ public class Correios {
         System.out.println("5 - Visualizar logradouros de um bairro");
         System.out.println("6 - Buscar logradouro por um CEP");
         System.out.println("7 - Buscar logradouro pelo nome");
+        System.out.println("8 - Menu de Testes");
         System.out.println("0 - Finalizar programa");
+        System.out.println("--------------------------------------------");
+        System.out.print("Digite uma opção: ");
+    }
+
+    static void menuTestes() {
+        System.out.println("\n1 - Testar leitura de arquivos");
+        System.out.println("2 - Testar pesquisa por CEP ou Nome da Rua");
+        System.out.println("0 - Voltar ao menu anterior");
         System.out.println("--------------------------------------------");
         System.out.print("Digite uma opção: ");
     }
@@ -34,10 +43,15 @@ public class Correios {
         Scanner scan = new Scanner(System.in);
         System.out.println("Selecione o diretório do arquivo que deseja ler:");
         String retorno = bancoDeDados.lerArquivos();
-        System.out.println(retorno);
+        if (retorno.equals("\nOperação cancelada!")) {
+            System.out.println("Programa cancelado!");
+            System.exit(0);
+        }
         while (retorno.equals("Falha ao ler arquivo!")) {
             retorno = bancoDeDados.lerArquivos();
-            System.out.println(retorno);
+            if (retorno.equals("\nOperação cancelada!")) {
+                System.exit(0);
+            }
         }
         while (true) {
             try {
@@ -90,6 +104,36 @@ public class Correios {
                             System.out.println(bancoDeDados.pegarLogradouroPeloNome(nomeLogradouro));
                             break;
                         // Caso escolha um número que não está nas opções
+                        case 8:
+                            menuTestes();
+                            int escolhaMenuTestes = Integer.parseInt(scan.nextLine());
+                            while (escolhaMenuTestes != 0) {
+                                switch (escolhaMenuTestes) {
+                                    case 1:
+                                        int cont = 0;
+                                        int total = 0;
+                                        while (!(cont == 3)) {
+                                            long valorinicialTeste = System.currentTimeMillis();
+                                            bancoDeDados.lerArquivos();
+                                            long valorfinalTeste = System.currentTimeMillis();
+                                            long totalTeste = valorfinalTeste - valorinicialTeste;
+                                            System.out.println(totalTeste);
+                                            total += (totalTeste);
+                                            cont++;
+                                        }
+                                        System.out.println("asdsasdasasaddas" + (total/3));
+                                        break;
+                                    case 2:
+                                        break;
+                                    default:
+                                        System.out.println("\nOpção Inválida!");
+                                        break;
+                                }
+                                System.out.println("");
+                                menuTestes();
+                                escolhaMenuTestes = Integer.parseInt(scan.nextLine());
+                            }
+                            break;
                         default:
                             System.out.println("\nOpção inválida !");
                             break;
