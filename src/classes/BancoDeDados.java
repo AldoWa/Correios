@@ -236,16 +236,16 @@ public class BancoDeDados {
             this.lerArquivos();
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
-            vetorDeTempos[i] = tempoTotal;
+            vetorDeTempos[i] = (tempoFim - tempoInicio);
         }
         string.append(tempoTotal / 3).append(" nanosegundos");
         //Gerando grafico e plotando o mesmo
         DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
         for (int i = 0; i < vetorDeTempos.length; i++) {
-            dataSets.setValue(vetorDeTempos[i], Integer.toString(i),"");
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i + 1), "");
         }
         JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempos de leituras", "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
-                 false, false);
+                false, false);
         CategoryPlot c = graficoDeBarra3d.getCategoryPlot();
         ChartFrame plot3d = new ChartFrame("Grafico de leitura dos arquivos", graficoDeBarra3d, true);
         plot3d.setVisible(true);
@@ -257,6 +257,7 @@ public class BancoDeDados {
     public String testeBuscaEstados() {
         StringBuilder string = new StringBuilder();
         string.append("\nTempo de teste = ");
+        long[] vetorDeTempos = new long[7];
         long tempoInicio;
         long tempoFim;
         long tempoTotal = 0;
@@ -265,8 +266,19 @@ public class BancoDeDados {
             this.retornarUFs();
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
+            vetorDeTempos[i] = (tempoFim - tempoInicio);
         }
         string.append(tempoTotal / 7).append(" nanosegundos");
+        DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
+        for (int i = 0; i < vetorDeTempos.length; i++) {
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i+1), "");
+        }
+        JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempos de busca dos estados", "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
+                false, false);
+        CategoryPlot c = graficoDeBarra3d.getCategoryPlot();
+        ChartFrame plot3d = new ChartFrame("Grafico de busca dos estados", graficoDeBarra3d, true);
+        plot3d.setVisible(true);
+        plot3d.setSize(700, 800);
         return string.toString();
     }
 
