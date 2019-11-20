@@ -11,6 +11,12 @@ import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -36,7 +42,7 @@ public class BancoDeDados {
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int retorno = chooser.showOpenDialog(null);
         File arquivoAtual = chooser.getSelectedFile();
-        if(retorno == JFileChooser.CANCEL_OPTION){
+        if (retorno == JFileChooser.CANCEL_OPTION) {
             JOptionPane.showMessageDialog(null, "Programa finalizado!");
             System.exit(0);
         }
@@ -173,8 +179,8 @@ public class BancoDeDados {
 
     public String pegarLogradouroPeloNome(String nomeLogradouro) {
         StringBuilder string = new StringBuilder();
-        string.append("-----------------------------------------------");
-        
+        string.append("\n-----------------------------------------------");
+
         boolean entrou = false;
         for (Logradouro logradouro : this.mapDeLogradouros.values()) {
             if (nomeLogradouro.compareToIgnoreCase(logradouro.getNomeLogradouro()) == 0) {
@@ -217,9 +223,10 @@ public class BancoDeDados {
         return "\nLeitura realizada com sucesso!";
     }
 
-    // Realiza 3 vezes a leitura do arquivo. Ao final do método, é retornada a média do tempo de execução da leitura
+    // Realiza 3 vezes dataSets leitura do arquivo. Ao final do método, é retornada dataSets média do tempo de execução da leitura
     public String testeLeituraArquivo() {
         StringBuilder string = new StringBuilder();
+        long[] vetorDeTempos = new long[3];
         string.append("\nTempo de teste = ");
         long tempoInicio;
         long tempoFim;
@@ -229,12 +236,24 @@ public class BancoDeDados {
             this.lerArquivos();
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
+            vetorDeTempos[i] = tempoTotal;
         }
-        string.append(tempoTotal/3).append(" nanosegundos");
+        string.append(tempoTotal / 3).append(" nanosegundos");
+        //Gerando grafico e plotando o mesmo
+        DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
+        for (int i = 0; i < vetorDeTempos.length; i++) {
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i),"");
+        }
+        JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempos de leituras", "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
+                 false, false);
+        CategoryPlot c = graficoDeBarra3d.getCategoryPlot();
+        ChartFrame plot3d = new ChartFrame("Grafico de leitura dos arquivos", graficoDeBarra3d, true);
+        plot3d.setVisible(true);
+        plot3d.setSize(700, 800);
         return string.toString();
     }
-    
-    // Realiza 7 vezes uma busca por nome e sigla de cada estado e armazena em uma string. Ao final do método, é retornada a média do tempo de execução da busca
+
+    // Realiza 7 vezes uma busca por nome e sigla de cada estado e armazena em uma string. Ao final do método, é retornada dataSets média do tempo de execução da busca
     public String testeBuscaEstados() {
         StringBuilder string = new StringBuilder();
         string.append("\nTempo de teste = ");
@@ -247,11 +266,11 @@ public class BancoDeDados {
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
         }
-        string.append(tempoTotal/7).append(" nanosegundos");
+        string.append(tempoTotal / 7).append(" nanosegundos");
         return string.toString();
     }
-    
-    // Realiza 7 vezes uma busca por nome de cada cidade de um estado e armazena em uma string. Ao final do método, é retornada a média do tempo de execução da busca
+
+    // Realiza 7 vezes uma busca por nome de cada cidade de um estado e armazena em uma string. Ao final do método, é retornada dataSets média do tempo de execução da busca
     public String testeBuscaCidadesEstado(String sigla) {
         StringBuilder string = new StringBuilder();
         string.append("\nTempo de teste = ");
@@ -264,10 +283,10 @@ public class BancoDeDados {
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
         }
-        string.append(tempoTotal/7).append(" nanosegundos");
+        string.append(tempoTotal / 7).append(" nanosegundos");
         return string.toString();
     }
-    
+
     public String testeBuscaBairrosCidade(String UF, String nomeCidade) {
         StringBuilder string = new StringBuilder();
         string.append("\nTempo de teste = ");
@@ -280,10 +299,10 @@ public class BancoDeDados {
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
         }
-        string.append(tempoTotal/7).append(" nanosegundos");
+        string.append(tempoTotal / 7).append(" nanosegundos");
         return string.toString();
     }
-    
+
     public String testeLogradourosBairro(String UF, String nomeCidade, String nomeBairro) {
         StringBuilder string = new StringBuilder();
         string.append("\nTempo de teste = ");
@@ -296,10 +315,10 @@ public class BancoDeDados {
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
         }
-        string.append(tempoTotal/7).append(" nanosegundos");
+        string.append(tempoTotal / 7).append(" nanosegundos");
         return string.toString();
     }
-    
+
     public String testeBuscaLogradouroCEP(String CEP) {
         StringBuilder string = new StringBuilder();
         string.append("\nTempo de teste = ");
@@ -312,10 +331,10 @@ public class BancoDeDados {
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
         }
-        string.append(tempoTotal/7).append(" nanosegundos");
+        string.append(tempoTotal / 7).append(" nanosegundos");
         return string.toString();
     }
-    
+
     public String testeBuscaLogradouroNome(String nome) {
         StringBuilder string = new StringBuilder();
         string.append("\nTempo de teste = ");
@@ -328,9 +347,8 @@ public class BancoDeDados {
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
         }
-        string.append(tempoTotal/7).append(" nanosegundos");
+        string.append(tempoTotal / 7).append(" nanosegundos");
         return string.toString();
     }
-    
-    
+
 }

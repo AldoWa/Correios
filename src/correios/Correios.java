@@ -8,6 +8,8 @@ package correios;
 import classes.BancoDeDados;
 import java.io.IOException;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Aldo
@@ -45,11 +47,12 @@ public class Correios {
     public static void main(String[] args) {
         // Inicialização do programa
         BancoDeDados bancoDeDados;
-        while(true){
+        while (true) {
             try {
                 bancoDeDados = new BancoDeDados();
                 break;
             } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
         System.out.println("Programa iniciado com sucesso !\n");
