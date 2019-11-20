@@ -370,6 +370,7 @@ public class BancoDeDados {
 
     public String testeBuscaLogradouroCEP(String CEP) {
         StringBuilder string = new StringBuilder();
+        long[] vetorDeTempos = new long[7];
         string.append("\nTempo de teste = ");
         long tempoInicio;
         long tempoFim;
@@ -379,13 +380,24 @@ public class BancoDeDados {
             this.pegarLogradouroPeloCEP(CEP);
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
+            vetorDeTempos[i] = (tempoFim - tempoInicio);
         }
         string.append(tempoTotal / 7).append(" nanosegundos");
+        DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
+        for (int i = 0; i < vetorDeTempos.length; i++) {
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i+1), "");
+        }
+        JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempo de busca dos logradouros pelo CEP "  + "'" + CEP + "'", "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
+                false, false);
+        ChartFrame plot3d = new ChartFrame("Grafico de busca do logradouro de CEP " + "'" + CEP + "'", graficoDeBarra3d, true);
+        plot3d.setVisible(true);
+        plot3d.setSize(700, 800);
         return string.toString();
     }
 
     public String testeBuscaLogradouroNome(String nome) {
         StringBuilder string = new StringBuilder();
+        long[] vetorDeTempos = new long[7];
         string.append("\nTempo de teste = ");
         long tempoInicio;
         long tempoFim;
@@ -395,8 +407,18 @@ public class BancoDeDados {
             this.pegarLogradouroPeloNome(nome);
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
+            vetorDeTempos[i] = (tempoFim - tempoInicio);
         }
         string.append(tempoTotal / 7).append(" nanosegundos");
+        DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
+        for (int i = 0; i < vetorDeTempos.length; i++) {
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i+1), "");
+        }
+        JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempo de busca dos logradouros pelo nome " + "'" + nome.toUpperCase() + "'", "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
+                false, false);
+        ChartFrame plot3d = new ChartFrame("Grafico de busca dos logradouros de nome " + "'" + nome.toUpperCase() + "'", graficoDeBarra3d, true);
+        plot3d.setVisible(true);
+        plot3d.setSize(700, 800);
         return string.toString();
     }
 
