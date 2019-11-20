@@ -246,7 +246,6 @@ public class BancoDeDados {
         }
         JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempos de leituras", "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
                 false, false);
-        CategoryPlot c = graficoDeBarra3d.getCategoryPlot();
         ChartFrame plot3d = new ChartFrame("Grafico de leitura dos arquivos", graficoDeBarra3d, true);
         plot3d.setVisible(true);
         plot3d.setSize(700, 800);
@@ -275,7 +274,6 @@ public class BancoDeDados {
         }
         JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempos de busca dos estados", "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
                 false, false);
-        CategoryPlot c = graficoDeBarra3d.getCategoryPlot();
         ChartFrame plot3d = new ChartFrame("Grafico de busca dos estados", graficoDeBarra3d, true);
         plot3d.setVisible(true);
         plot3d.setSize(700, 800);
@@ -285,6 +283,7 @@ public class BancoDeDados {
     // Realiza 7 vezes uma busca por nome de cada cidade de um estado e armazena em uma string. Ao final do método, é retornada dataSets média do tempo de execução da busca
     public String testeBuscaCidadesEstado(String sigla) {
         StringBuilder string = new StringBuilder();
+        long[] vetorDeTempos = new long[7];
         string.append("\nTempo de teste = ");
         long tempoInicio;
         long tempoFim;
@@ -294,13 +293,24 @@ public class BancoDeDados {
             this.buscarCidadesDaUF(sigla);
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
+            vetorDeTempos[i] = (tempoFim - tempoInicio);
         }
         string.append(tempoTotal / 7).append(" nanosegundos");
+        DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
+        for (int i = 0; i < vetorDeTempos.length; i++) {
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i+1), "");
+        }
+        JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempos de busca das cidades do estado com sigla " + sigla, "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
+                false, false);
+        ChartFrame plot3d = new ChartFrame("Grafico de busca das cidades do estado com sigla " + sigla, graficoDeBarra3d, true);
+        plot3d.setVisible(true);
+        plot3d.setSize(700, 800);
         return string.toString();
     }
 
     public String testeBuscaBairrosCidade(String UF, String nomeCidade) {
         StringBuilder string = new StringBuilder();
+        long[] vetorDeTempos = new long[7];
         string.append("\nTempo de teste = ");
         long tempoInicio;
         long tempoFim;
@@ -310,13 +320,26 @@ public class BancoDeDados {
             this.buscarBairrosDaCidade(UF, nomeCidade);
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
+            vetorDeTempos[i] = (tempoFim - tempoInicio);
         }
         string.append(tempoTotal / 7).append(" nanosegundos");
+        DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
+        for (int i = 0; i < vetorDeTempos.length; i++) {
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i+1), "");
+        }
+        JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempos de busca dos bairros da cidade " + nomeCidade.toUpperCase()
+                + "-" + UF.toUpperCase(), "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
+                false, false);
+        ChartFrame plot3d = new ChartFrame("Grafico de busca dos bairros da cidade " + nomeCidade.toUpperCase()
+                + "-" + UF.toUpperCase(), graficoDeBarra3d, true);
+        plot3d.setVisible(true);
+        plot3d.setSize(700, 800);
         return string.toString();
     }
 
     public String testeLogradourosBairro(String UF, String nomeCidade, String nomeBairro) {
         StringBuilder string = new StringBuilder();
+        long[] vetorDeTempos = new long[7];
         string.append("\nTempo de teste = ");
         long tempoInicio;
         long tempoFim;
@@ -326,8 +349,22 @@ public class BancoDeDados {
             this.buscarLogradourosDoBairro(UF, nomeCidade, nomeBairro);
             tempoFim = System.nanoTime();
             tempoTotal += (tempoFim - tempoInicio);
+            vetorDeTempos[i] = (tempoFim - tempoInicio);
         }
         string.append(tempoTotal / 7).append(" nanosegundos");
+        DefaultCategoryDataset dataSets = new DefaultCategoryDataset();
+        for (int i = 0; i < vetorDeTempos.length; i++) {
+            dataSets.setValue(vetorDeTempos[i], Integer.toString(i+1), "");
+        }
+        JFreeChart graficoDeBarra3d = ChartFactory.createBarChart3D("Tempo de busca dos logradouros no bairro "
+                + nomeBairro.toUpperCase() + " na cidade " + 
+                nomeCidade.toUpperCase() + "-" + UF.toUpperCase(), "Execucoes", "Tempo em nanosegundos", dataSets, PlotOrientation.VERTICAL, true,
+                false, false);
+        ChartFrame plot3d = new ChartFrame("Grafico de busca dos logradouros no bairro "
+                + nomeBairro.toUpperCase() + " na cidade " + 
+                nomeCidade.toUpperCase() + "-" + UF.toUpperCase(), graficoDeBarra3d, true);
+        plot3d.setVisible(true);
+        plot3d.setSize(700, 800);
         return string.toString();
     }
 
