@@ -10,13 +10,13 @@
 ## Funcionalidade e Metodos:
 #### 1. Logo ao iniciar o arquivo  irará abrir um FileChooser, para escolher a pasta onde fica os arquivos dos correios para ler.
 #### 2. Ira aparecer todos os metodos:
-* ##### 2.1 Atualizar arquivo - Irará ler novamente o novo arquivo , atualizando a leitura antiga.
-* ##### 2.2 Visualizar estados - Irará retornar todos os estados.
-* ##### 2.3 Visualizar cidades de um estado - Pedirá no inicio para passar o estado que deseja retornar todas as cidades, após isso irará retornar.
-* ##### 2.4 Visualizar bairros de um estado - Terá que passar no inicio o estado  onde se localiza o bairro , após isso irará pedir para passar a cidade onde deseja retornar todos os bairros, por fim o programa retornará todos os bairros.
+* ##### 2.1 Atualizar arquivo - Irá ler novamente o novo arquivo , atualizando a leitura antiga.
+* ##### 2.2 Visualizar estados - Irá retornar todos os estados.
+* ##### 2.3 Visualizar cidades de um estado - Pedirá no inicio para passar o estado que deseja retornar todas as cidades, após isso irá retornar.
+* ##### 2.4 Visualizar bairros de um estado - Terá que passar no inicio o estado  onde se localiza o bairro , após isso irá pedir para passar a cidade onde deseja retornar todos os bairros, por fim o programa retornará todos os bairros.
 * ##### 2.5 Visualizar logradouros de um bairro - Terá que fazer todo procedimento da parte 2.4 , porém no final em vez de retornar os bairros, ele irá pedir o bairro que voce deseja ver todos os lougradoros, passando ele o programa retornará todos os logradouros desse bairro.
 * ##### 2.6 Buscar logradouro por CEP - O programa exigirá o cep para retornar o seu respectivo logradouro.
-* ##### 2.7 Buscar logradouro por Nome - O programa irará pedir para passar o nome do logradouro desejado, passando o nome ele irá retornará todos com esse determinado nome.
+* ##### 2.7 Buscar logradouro por Nome - O programa irá pedir para passar o nome do logradouro desejado, passando o nome ele irá retornará todos com esse determinado nome.
 * ##### 2.8 Menu de testes - Acessará um novo menu , que nesse menu é uma area de testes para receber o tempo de cada execução, em nanosecundos.
   * ##### 2.8.1 Teste de leitura de arquivos - Retornará o tempo da leitura do arquivo.
   * ##### 2.8.2 Teste de busca por todos os estados - Retornará o tempo da leitura de todos os estados.
