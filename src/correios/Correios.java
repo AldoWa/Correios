@@ -21,8 +21,8 @@ public class Correios {
         System.out.println("3 - Visualizar cidades de um estado");
         System.out.println("4 - Visualizar bairros de uma cidade");
         System.out.println("5 - Visualizar logradouros de um bairro");
-        System.out.println("6 - Buscar logradouro por um CEP");
-        System.out.println("7 - Buscar logradouro pelo nome");
+        System.out.println("6 - Buscar logradouro por CEP");
+        System.out.println("7 - Buscar logradouro por nome");
         System.out.println("8 - Menu de Testes");
         System.out.println("0 - Finalizar programa");
         System.out.println("--------------------------------------------");
@@ -30,8 +30,13 @@ public class Correios {
     }
 
     static void menuTestes() {
-        System.out.println("\n1 - Testar leitura de arquivos");
-        System.out.println("2 - Testar pesquisa por CEP ou Nome da Rua");
+        System.out.println("1 - Teste de leitura de arquivos");
+        System.out.println("2 - Teste de busca por todos os estados");
+        System.out.println("3 - Teste de busca por todas as cidades de um estado");
+        System.out.println("4 - Teste de busca por todos os bairros de uma cidade");
+        System.out.println("5 - Teste de busca por todos os logradouros de um bairro");
+        System.out.println("6 - Teste de busca por logradouro por CEP");
+        System.out.println("7 - Teste de busca por logradouro por nome");
         System.out.println("0 - Voltar ao menu anterior");
         System.out.println("--------------------------------------------");
         System.out.print("Digite uma opção: ");
@@ -47,6 +52,7 @@ public class Correios {
             } catch (IOException ex) {
             }
         }
+        System.out.println("Programa iniciado com sucesso !\n");
         Scanner scan = new Scanner(System.in);
         while (true) {
             try {
@@ -60,13 +66,13 @@ public class Correios {
                             break;
                         // Mostrar todas as UFs
                         case 2:
-                            System.out.println(bancoDeDados.retornarUFs());
+                            System.out.print(bancoDeDados.retornarUFs());
                             break;
                         // Mostrar todas as cidades de uma UF    
                         case 3:
                             System.out.print("\nDigite a UF do estado que deseja visualizar as cidades: ");
                             String ufEstado = scan.nextLine().toUpperCase();
-                            System.out.println(bancoDeDados.buscarCidadesDaUF(ufEstado));
+                            System.out.print(bancoDeDados.buscarCidadesDaUF(ufEstado));
                             break;
                         // Mostrar todos os bairros de uma cidade    
                         case 4:
@@ -74,7 +80,7 @@ public class Correios {
                             String uFEstado = scan.nextLine().toUpperCase();
                             System.out.print("Digite o nome da cidade que deseja ver os bairros: ");
                             String nomeCidade = scan.nextLine();
-                            System.out.println(bancoDeDados.buscarBairrosDaCidade(uFEstado, nomeCidade));
+                            System.out.print(bancoDeDados.buscarBairrosDaCidade(uFEstado, nomeCidade));
                             break;
                         // Mostrar todos os logradouros de um bairro
                         case 5:
@@ -84,42 +90,72 @@ public class Correios {
                             String nameCidade = scan.nextLine();
                             System.out.print("Digite o nome do bairro que deseja ver as ruas: ");
                             String nomeBairro = scan.nextLine();
-                            System.out.println(bancoDeDados.buscarLogradourosDoBairro(UFEstado, nameCidade, nomeBairro));
+                            System.out.print(bancoDeDados.buscarLogradourosDoBairro(UFEstado, nameCidade, nomeBairro));
                             break;
                         // Mostrar dados de um logradouro através do CEP
                         case 6:
                             System.out.print("\nDigite um CEP: ");
                             String cepLogradouro = scan.nextLine();
-                            System.out.println(bancoDeDados.pegarLogradouroPeloCEP(cepLogradouro));
+                            System.out.print(bancoDeDados.pegarLogradouroPeloCEP(cepLogradouro));
                             break;
                         // Mostrar dados de um logradouro através do nome
                         case 7:
                             System.out.print("\nDigite o nome do logradouro: ");
                             String nomeLogradouro = scan.nextLine();
-                            System.out.println(bancoDeDados.pegarLogradouroPeloNome(nomeLogradouro));
+                            System.out.print(bancoDeDados.pegarLogradouroPeloNome(nomeLogradouro));
                             break;
-                        // Caso escolha um número que não está nas opções
+                        // Menu de testes
                         case 8:
+                            System.out.println("");
                             menuTestes();
                             int escolhaMenuTestes = Integer.parseInt(scan.nextLine());
                             while (escolhaMenuTestes != 0) {
                                 switch (escolhaMenuTestes) {
+                                    // Teste de leitura de arquivos 
                                     case 1:
-                                        int cont = 0;
-                                        int total = 0;
-                                        while (!(cont == 3)) {
-                                            long valorinicialTeste = System.currentTimeMillis();
-                                            bancoDeDados.lerArquivos();
-                                            long valorfinalTeste = System.currentTimeMillis();
-                                            long totalTeste = valorfinalTeste - valorinicialTeste;
-                                            System.out.println(totalTeste);
-                                            total += (totalTeste);
-                                            cont++;
-                                        }
-                                        System.out.println("asdsasdasasaddas" + (total/3));
+                                        System.out.println(bancoDeDados.testeLeituraArquivo());
                                         break;
+                                    // Teste de busca por todos os estados
                                     case 2:
+                                        System.out.println(bancoDeDados.testeBuscaEstados());
                                         break;
+                                    // Teste de busca por todas as cidades de um estado
+                                    case 3:
+                                        System.out.print("\nDigite a UF do estado : ");
+                                        String uf3 = scan.nextLine().toUpperCase();
+                                        System.out.println(bancoDeDados.testeBuscaCidadesEstado(uf3));
+                                        break;
+                                    // Teste de busca por todos os bairros de uma cidade
+                                    case 4:
+                                        System.out.print("\nDigite a UF do estado : ");
+                                        String uf4 = scan.nextLine().toUpperCase();
+                                        System.out.print("Digite o nome da cidade : ");
+                                        String nomeCidade4 = scan.nextLine();
+                                        System.out.println(bancoDeDados.testeBuscaBairrosCidade(uf4, nomeCidade4));
+                                        break;
+                                    // Teste de busca por todos os logradouros de um bairro
+                                    case 5:
+                                        System.out.print("\nDigite a UF do estado desejado: ");
+                                        String uf5 = scan.nextLine().toUpperCase();
+                                        System.out.print("Digite o nome da cidade que deseja ver os bairros: ");
+                                        String nomeCidade5 = scan.nextLine();
+                                        System.out.print("Digite o nome do bairro que deseja ver as ruas: ");
+                                        String nomeBairro5 = scan.nextLine();
+                                        System.out.println(bancoDeDados.testeLogradourosBairro(uf5, nomeCidade5, nomeBairro5));
+                                        break;
+                                    // Teste de busca por logradouro por CEP
+                                    case 6:
+                                        System.out.print("\nDigite um CEP: ");
+                                        String cep = scan.nextLine();
+                                        System.out.println(bancoDeDados.testeBuscaLogradouroCEP(cep));
+                                        break;
+                                    // Teste de busca por logradouro por nome
+                                    case 7:
+                                        System.out.print("\nDigite o nome do logradouro: ");
+                                        String logradouro = scan.nextLine();
+                                        System.out.println(bancoDeDados.testeBuscaLogradouroNome(logradouro));
+                                        break;
+                                    // Caso a opção escolhida não esteja no menu
                                     default:
                                         System.out.println("\nOpção Inválida!");
                                         break;
@@ -129,6 +165,7 @@ public class Correios {
                                 escolhaMenuTestes = Integer.parseInt(scan.nextLine());
                             }
                             break;
+                        // Caso a opção escolhida não esteja no menu
                         default:
                             System.out.println("\nOpção inválida !");
                             break;
