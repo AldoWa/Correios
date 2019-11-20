@@ -12,6 +12,9 @@
 - #### HashMap
 - #### CurrentHashMap
 - #### Array
+## Bibliotecas externas utilizadas para gerar o grafico:
+- #### JCommon
+- #### JFreeChart
 ## Classes feitas:
 - #### Bairro
 - #### BancoDeDados
@@ -51,10 +54,39 @@
 #### Media da figura 1.1:
 ![MediaDoTempoDeLeitura](https://www.imagemhost.com.br/images/2019/11/20/tempoDeLeitura.png)
 
-* #### 2. Teste de todos os estados, executado 7 vezes:
+* #### 2. Teste de busca por todos os estados, executado 7 vezes:
 ![tempoBuscaDosEstados](https://www.imagemhost.com.br/images/2019/11/20/tempoBuscaDosEstados.png)
 
 #### Figura 2.1 - Grafico do tempo do teste de busca por todos os estados
-#### Media figura 2.1:
+#### Media da figura 2.1:
 ![MediaDoTempoBuscaDosEstados](https://www.imagemhost.com.br/images/2019/11/20/tempoBuscaDosEstados6c7c15b982245a22.png)
 
+* #### 3. Teste de busca por todas as cidades de um estado, executado 7 vezes:
+![tempoBuscaTodasCidadesEstadoSP](https://www.imagemhost.com.br/images/2019/11/20/siglaSP.png)
+#### Figura 3.1 - Grafico do tempo do teste de busca por cidades de um estado , passando UF - SP como parametro.
+#### Media da figura 3.1:
+![MediaSiglaSP](https://www.imagemhost.com.br/images/2019/11/20/MediaSiglaSP.png)
+
+* #### 4. Teste de busca por todos os bairros de uma cidade, executado 7 vezes: 
+![TempoBuscaBairrosSPSP](https://www.imagemhost.com.br/images/2019/11/20/TempoBuscaBairros.png)
+#### Figura 4.1 - Grafico do tempo do teste de busca por todos os bairros de uma cidade, passando UF - SP e a cidade São Paulo  como parametro.
+#### Media da figura 4.1:
+![buscaSP](https://www.imagemhost.com.br/images/2019/11/20/buscaSP.png)
+
+* #### 5. Teste de busca por todos os logradouros de um bairro, executado 7 vezes:
+<a href="https://ibb.co/tKWppgq"><img src="https://i.ibb.co/V9PYYRg/Logradouros-B.png" alt="Logradouros-B" border="0"></a>
+#### Figura 5.1 - Grafico do tempo do teste de busca por todos os logradouros de um bairro , passando UF - SP , São Paulo como cidade e Grageru como bairro.
+#### Media da figura 5.1:
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/k5jsTTD/Logradouro-SPGrageru.png" alt="MediaLogradouro-SPGrageru" border="0"></a>
+
+* #### 6. Teste de busca por logradouro  passando um CEP , executado 7 vezes:
+<a href="https://ibb.co/PDbD9D0"><img src="https://i.ibb.co/y4M4Y47/CEP.png" alt="CEP" border="0"></a>
+#### Figura 6.1 - Grafico do tempo do teste de busca por logradouro passando um CEP.
+#### Media da figura 6.1:
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/QkPb90N/Media-CEP.png" alt="Logradouro-CEP" border="0"></a>
+
+* #### 7. Teste de busca por logradouro passando o NOME , executado 7 vezes:
+<a href="https://ibb.co/ZMBs36q"><img src="https://i.ibb.co/x71vySx/logradouro-Nome.png" alt="logradouro-Nome" border="0"></a>
+#### Figura 7.1 - Grafico do tempo do teste de busca por logradouro passando o nome.
+#### Media da figura 7.1:
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/WKKBk3W/Logradouro-Nome1.png" alt="MediaLogradouroNome" border="0"></a>
