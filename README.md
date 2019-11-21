@@ -90,3 +90,6 @@
 #### Figura 7.1 - Grafico do tempo do teste de busca por logradouro passando o nome.
 #### Media da figura 7.1:
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/WKKBk3W/Logradouro-Nome1.png" alt="MediaLogradouroNome" border="0"></a>
+
+## Memoria Utilizada:
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/s1R8pp6/teste.png" alt="teste" border="0"></a>
