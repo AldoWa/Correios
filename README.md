@@ -91,11 +91,23 @@
 #### Media da figura 7.1:
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/WKKBk3W/Logradouro-Nome1.png" alt="MediaLogradouroNome" border="0"></a>
 
-## Memoria Utilizada no teste de leitura de arquivo:
+## Memoria utilizada no teste de leitura de arquivo:
 <a href="https://ibb.co/4MYpnbL"><img src="https://i.ibb.co/NpmKd0q/teste123.png" alt="teste123" border="0"></a>
 
-## Memoria teste de procura de estados:
+## Memoria utilizada no teste de procura de estados:
 <a href="https://ibb.co/Mk49rWr"><img src="https://i.ibb.co/yF1VtGt/att.png" alt="Estados" border="0"></a>
 
-## Memoria teste de procura de cidades , passando SP como estado. 
-<a href="https://ibb.co/rmy687D"><img src="https://i.ibb.co/kxc8bHN/att2.png" alt="att2" border="0"></a>
+## Memoria utilizada no teste de procura de cidades , passando SP como estado:
+<a href="https://ibb.co/rmy687D"><img src="https://i.ibb.co/kxc8bHN/att2.png" alt="cidadeSP" border="0"></a>
+
+## Memoria utilizada no teste de procura dos bairros de uma cidade escolhendo São Paulo - SP:
+<a href="https://ibb.co/vYWbtrM"><img src="https://i.ibb.co/C2yqrXS/teste1234.png" alt="bairrodacidadeSaoPaulo" border="0"></a>
+
+## Memoria utilizada no teste de procura dos logradouros de um bairro escolhendo a Zona Sul de São Paulo - SP:
+<a href="https://ibb.co/Sdqsw7y"><img src="https://i.ibb.co/gPsjZF9/teste12345.png" alt="logradourosDoBairroZonasulSP" border="0"></a>
+
+## Memoria utilizada no teste de procura de um logradouro pelo CEP:
+<a href="https://ibb.co/DtmtKc1"><img src="https://i.ibb.co/BtvtsWf/teste123456.png" alt="logradouroPeloCep" border="0"></a>
+
+## Memoria utilizada no teste de procura de um logradouro pelo nome:
+<a href="https://ibb.co/7rnDt1k"><img src="https://i.ibb.co/h2BNFmY/teste1234567.png" alt="teste1234567" border="0"></a>
