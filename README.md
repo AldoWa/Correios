@@ -91,5 +91,11 @@
 #### Media da figura 7.1:
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/WKKBk3W/Logradouro-Nome1.png" alt="MediaLogradouroNome" border="0"></a>
 
-## Memoria Utilizada:
-<a href="https://imgbb.com/"><img src="https://i.ibb.co/s1R8pp6/teste.png" alt="teste" border="0"></a>
+## Memoria Utilizada no teste de leitura de arquivo:
+<a href="https://ibb.co/4MYpnbL"><img src="https://i.ibb.co/NpmKd0q/teste123.png" alt="teste123" border="0"></a>
+
+## Memoria teste de procura de estados:
+<a href="https://ibb.co/Mk49rWr"><img src="https://i.ibb.co/yF1VtGt/att.png" alt="Estados" border="0"></a>
+
+## Memoria teste de procura de cidades , passando SP como estado. 
+<a href="https://ibb.co/rmy687D"><img src="https://i.ibb.co/kxc8bHN/att2.png" alt="att2" border="0"></a>
